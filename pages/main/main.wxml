@@ -1,0 +1,22 @@
+<!--pages/main/main.wxml-->
+<import src="talk_template/talk_template.wxml" />
+<!--顶部轮播组件-->
+<swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" circular="{{circular}}">
+
+  <block wx:for="{{banners}}">
+    <swiper-item>
+      <image src="{{item}}" />
+    </swiper-item>
+  </block>
+</swiper>
+
+
+<scroll-view>
+  <block wx:for="{{articles}}" wx:for-item="item" wx:for-index="index">
+  <!--这里在template嵌套多一层view，是要点击item，把事件绑定在template会
+  获取不到的，因为 template不会存在页面结构上，bolck也是一样-->
+    <view catchtap="goToDetails" data-aid='{{item.id}}'>
+      <template is="talkitem" data="{{...item}}"></template>
+    </view>
+  </block>
+</scroll-view>

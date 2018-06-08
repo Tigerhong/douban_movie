@@ -1,0 +1,10 @@
+<!--pages/movies/more_movie/more_movies.wxml-->
+<import src="../movie-grid/movie-grid-template.wxml" />
+
+<view>
+  <template is="movieGridTemplate" data="{{movies}}" />
+</view>
+
+<view wx:if="{{isShowLoadMore}}" class='load-more-box'>
+  <text class='load-more-text'>{{loadMoreText}}</text>
+</view>

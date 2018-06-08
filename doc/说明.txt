@@ -1,0 +1,7 @@
+学习微信小程序
+
+读骑着毛驴逗你玩儿：https://www.jianshu.com/p/9c9b555b52e8
+中的微信小程序，手撕代码
+
+参考
+https://github.com/wenjiangit/MovieReader

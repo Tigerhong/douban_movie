@@ -1,0 +1,18 @@
+<template name="talkitem">
+  <view class='article'>
+    <view class='author-data'>
+      <image class='avatar' src='{{avatar}}'></image>
+      <text class='nickname'>{{name}}</text>
+      <i class="iconfont icon-v{{level}} level"></i>
+    </view>
+    <image class='thumbnail' src='{{thumbnail}}'></image>
+    <text class="introduce">{{content}}</text>
+    <view class='operate'>
+      <i class="iconfont icon-liulan operate-icon"></i>
+      <text class='perate-count'>{{views}}</text>
+      <i class="iconfont icon-msnui-love operate-icon" data-id="{{id}}" style="color: {{canLike ? '#aaa' : 'pink'}};" bindtap="likeThis"></i>
+      <text class='perate-count'>{{likes}}</text>
+      <text class='operate_time perate-count'>{{date}}</text>
+    </view>
+  </view>
+</template>

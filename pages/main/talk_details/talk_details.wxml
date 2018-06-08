@@ -1,0 +1,25 @@
+<!--pages/main/talk_details/talk_details.wxml-->
+<view class='detailsContainer'>
+  <image class='cover' src='{{articles.thumbnail}}'>
+    <image class='detailsMusic' src="{{isPlaying?'../../../images/music/music-stop.png':'../../../images/music/music-start.png'}}" catchtap='openMusic'></image>
+  </image>
+  <view class='authorData'>
+    <image src='{{articles.avatar}}'></image>
+    <text class="authorDataName">{{articles.name}}</text>
+    <text class="constText">发表于</text>
+    <text class='releaseData'>{{articles.date}}</text>
+  </view>
+  <text class='detailsTitle'>{{articles.title}}</text>
+  <view class='option'>
+    <view class='icon'>
+      <!--收藏按钮-->
+      <image wx:if="{{col}}" class='collection' src='../../../images/icon/collection.png' data-id="{{articles.id}}" catchtap='clickCollection'></image>
+      <!--收藏反向按钮-->
+      <image wx:else class='collection' src='../../../images/icon/collection-anti.png' data-id="{{articles.id}}" catchtap='clickCollection'></image>
+      <!--分享按钮-->
+      <image class='share' src='../../../images/icon/share.png' catchtap='clickShare'></image>
+    </view>
+    <view class='hr'></view>
+  </view>
+  <text class='detailsContent'>{{articles.content}}</text>
+</view>

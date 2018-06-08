@@ -1,0 +1,15 @@
+/* pages/movies/more_movie/more_movies.wxss */
+@import "../movie-grid/movie-grid-template.wxss";
+.load-more-box {
+  width: 100%;
+  height: 70rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: #f2f2f2;
+  justify-content: space-around;
+}
+
+.load-more-text {
+  font-size: 24rpx;
+}
