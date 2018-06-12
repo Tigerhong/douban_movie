@@ -1,11 +1,21 @@
 <!--pages/movie/movie.wxml-->
 <import src="movieList/movie-list-template.wxml" />
-<view class="moviesContainer">
+<import src="movie-grid/movie-grid-template.wxml" />
+<view class="search">
+  <icon type='search' class="search-img" size="14" color='#405f80'></icon>
+  <input type='text' placeholder='唐人街探案2' placeholder-class='placeholder' bindfocus='onBindFocus' 
+  value='{{inputText}}' bindconfirm='onSearch'></input>
+  <icon type='clear' class='clear-img' size='14' color='#405f80' catchtap='recover' wx-if="{{closeImgShow}}"></icon>
+</view>
+<view class='search-panel' wx-if="{{searchPanelShow}}">
+  <template is="movieGridTemplate" data="{{...searchMovies}}"></template>
+</view>
+<view class="moviesContainer" wx-if="{{containerShow}}">
   <view class="movie-template">
-    <template is="movieListTemplate" data="{{...inTheaters}}"/>
+    <template is="movieListTemplate" data="{{...inTheaters}}" />
   </view>
   <view class="movie-template">
-    <template is="movieListTemplate" data="{{...comeingSoon}}"/>
+    <template is="movieListTemplate" data="{{...comeingSoon}}" />
   </view>
   <text>测试数据{{top250.movies[0].title}}</text>
   <text>{{top250.slogan}}</text>

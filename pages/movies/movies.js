@@ -7,7 +7,10 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    containerShow:true,
+    searchPanelShow:false,
+    closeImgShow:false,
+    inputText:''
   },
 
   /**
@@ -17,9 +20,9 @@ Page({
     wx.showLoading({
       title: '正在加载中...',
     })
-    let inTheaters = app.globalData.BASEPATH + "v2/movie/in_theaters",
-      comeingSoon = app.globalData.BASEPATH + "v2/movie/coming_soon",
-      top250 = app.globalData.BASEPATH + "v2/movie/top250";
+    let inTheaters = app.globalData.BASEPATH + "v2/movie/in_theaters?count=3",
+      comeingSoon = app.globalData.BASEPATH + "v2/movie/coming_soon?count=3",
+      top250 = app.globalData.BASEPATH + "v2/movie/top250?count=3";
 
     // 调用三次不同的接口请求不同的数据
     this.getData(inTheaters, "inTheaters", "正在热映");
@@ -30,7 +33,7 @@ Page({
     let that = this;
     wx.request({
       url: url,
-      data: { count: 3 }, // 页面中目前我们只需要3条数据
+      // data: { count: 3 }, // 页面中目前我们只需要3条数据
       header: { "Content-Type": "json" },
       success: function (res) {
         // 调用专门处理数据的函数
@@ -58,6 +61,7 @@ Page({
       movie.push(temp);
     }
     wx.hideLoading();
+    wx.hideNavigationBarLoading();
     //往data中动态创建变量来保存数据
     this.setData({
       // 因为这里不能直接写setKey，所以用[]来包裹住变量key，相当于占位符
@@ -70,6 +74,30 @@ Page({
       }
     })
   },
+  onBindFocus:function(){
+  this.setData({
+    containerShow:false,
+    searchPanelShow:true,
+    closeImgShow:true
+  })
+  },
+  onSearch:function(e){
+    //获取输入框的值
+   let val= e.detail.value;
+   //拼接搜索的url
+   let searchUrl = app.globalData.BASEPATH + "v2/movie/search??count=50&q=" + val;
+   wx.showNavigationBarLoading()
+   this.getData(searchUrl,'searchMovies','');
+  },
+  recover:function(){
+    this.setData({
+      containerShow: true,
+      searchPanelShow: false,
+      closeImgShow: false,
+      inputText:""
+    })
+  },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
