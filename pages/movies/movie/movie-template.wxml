@@ -1,6 +1,6 @@
 <import src="../stars/stars-template.wxml" /> // 引入编写的星星组件
 <template name="movieTemplate">
-    <view class='movie-container'>
+    <view class='movie-container' data-mid='{{movieId}}' catchtap='onMovieTap'>
         <image class="movie-img" src="{{converageUrl}}"></image>
         <text class='movie-title'>{{title}}</text>
         <template is="starsTemplate" data="{{average: average, stars: stars}}"/>

@@ -7,10 +7,11 @@ Page({
    * 页面的初始数据
    */
   data: {
-    containerShow:true,
-    searchPanelShow:false,
-    closeImgShow:false,
-    inputText:''
+    containerShow: true,
+    searchPanelShow: false,
+    closeImgShow: false,
+    inputText: '',
+    showOrHide: "hidden"
   },
 
   /**
@@ -26,8 +27,8 @@ Page({
 
     // 调用三次不同的接口请求不同的数据
     this.getData(inTheaters, "inTheaters", "正在热映");
-    this.getData(comeingSoon, "comeingSoon","即将上映");
-    this.getData(top250, "top250","TOP250");
+    this.getData(comeingSoon, "comeingSoon", "即将上映");
+    this.getData(top250, "top250", "TOP250");
   },
   getData: function (url, setKey, slogan) {
     let that = this;
@@ -71,75 +72,39 @@ Page({
         // 我们需要让他们三个都有一个共同的属性值，方便模板循环遍历
         movies: movie,
         slogan: slogan
-      }
+      },
+      showOrHide: "visible"
     })
   },
-  onBindFocus:function(){
-  this.setData({
-    containerShow:false,
-    searchPanelShow:true,
-    closeImgShow:true
-  })
+  onBindFocus: function () {
+    this.setData({
+      containerShow: false,
+      searchPanelShow: true,
+      closeImgShow: true
+    })
   },
-  onSearch:function(e){
+  onSearch: function (e) {
     //获取输入框的值
-   let val= e.detail.value;
-   //拼接搜索的url
-   let searchUrl = app.globalData.BASEPATH + "v2/movie/search??count=50&q=" + val;
-   wx.showNavigationBarLoading()
-   this.getData(searchUrl,'searchMovies','');
+    let val = e.detail.value;
+    //拼接搜索的url
+    let searchUrl = app.globalData.BASEPATH + "v2/movie/search??count=50&q=" + val;
+    wx.showNavigationBarLoading()
+    this.getData(searchUrl, 'searchMovies', '');
   },
-  recover:function(){
+  recover: function () {
     this.setData({
       containerShow: true,
       searchPanelShow: false,
       closeImgShow: false,
-      inputText:""
+      inputText: ""
     })
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
+  onMovieTap(e) {
+    let mid = e.currentTarget.dataset.mid;
+    wx.navigateTo({
+      url: 'movie-detail/movie-detail?mid=' + mid,
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
   /**
    * 用户点击右上角分享
    */

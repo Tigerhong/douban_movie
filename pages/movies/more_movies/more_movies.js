@@ -115,7 +115,12 @@ Page({
       title: that.data.barTitle
     })
   },
-
+  onMovieTap(e) {
+    let mid = e.currentTarget.dataset.mid;
+    wx.navigateTo({
+      url: '../movie-detail/movie-detail?mid=' + mid
+    })
+  },
   /**
    * 生命周期函数--监听页面显示
    */

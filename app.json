@@ -5,7 +5,8 @@
     "pages/main/main",
     "pages/movies/movies",
     "pages/main/talk_details/talk_details",
-    "pages/movies/more_movies/more_movies"
+    "pages/movies/more_movies/more_movies",
+    "pages/movies/movie-detail/movie-detail"
   ],
   "window": {
     "backgroundTextStyle": "light",
